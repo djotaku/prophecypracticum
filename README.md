@@ -1,1 +1,3 @@
-# prophecypracticum
+# Prophecy Practicum
+
+Documentation at: 
