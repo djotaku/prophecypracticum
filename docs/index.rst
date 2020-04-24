@@ -11,6 +11,7 @@ Welcome to Prophecy Practicum's documentation!
    :caption: Contents:
 
    modules/engine/user
+   modules/engine/prophecy
 
 
 
