@@ -22,3 +22,7 @@ class User:
     prophecy_given: bool = False
     prophecy_received: bool = False
     prophecy_received_and_interacted: bool = False
+
+    def get_email_address(self):
+        """Return user's email address."""
+        return self.email
