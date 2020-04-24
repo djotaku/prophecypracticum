@@ -24,5 +24,7 @@ class User:
     prophecy_received_and_interacted: bool = False
 
     def get_email_address(self):
-        """Return user's email address."""
+        """Return user's email address.
+
+        :returns: The user's email address."""
         return self.email
