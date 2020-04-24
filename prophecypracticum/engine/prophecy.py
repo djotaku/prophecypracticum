@@ -3,7 +3,7 @@
 import attr
 
 
-@attr.s
+@attr.s(auto_attribs=True)
 class Prophecy:
     """The Prophecy Object.
 

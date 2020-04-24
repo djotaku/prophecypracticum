@@ -4,7 +4,7 @@ import attr
 from typing import Any
 
 
-@attr.s
+@attr.s(auto_attribs=True)
 class User:
     """The user participating in the Prophecy Practicum.
 
