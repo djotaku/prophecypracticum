@@ -17,6 +17,6 @@ class User:
     """
     name: str
     email: str
-    user_id: int
+    user_id: int = 0
     prophecy_given: bool = False
     prophecy_received_and_interacted: bool = False
