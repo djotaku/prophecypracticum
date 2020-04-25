@@ -10,6 +10,9 @@ Welcome to Prophecy Practicum's documentation!
    :maxdepth: 2
    :caption: Contents:
 
+   modules/engine/user
+   modules/engine/prophecy
+
 
 
 Indices and tables
