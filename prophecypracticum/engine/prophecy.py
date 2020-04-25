@@ -23,25 +23,55 @@ class Prophecy:
     feedback_text: str = ""
 
     def get_text_prophecy(self) -> str:
-        pass
+        """Return prophecy text.
+
+        :returns: The text of the prophecy
+        """
+        return self.prophecy_text
 
     def modify_text_prophecy(self, new_prophecy: str) -> None:
-        pass
+        """Modify the text of the prophecy.
+
+        :param new_prophecy: The text of the new prophecy."""
+        self.prophecy_text = new_prophecy
 
     def get_photo_location(self) -> str:
-        pass
+        """Return photo location on disk.
+
+        :returns: The location of the photo on the disk."""
+        return self.prophecy_photo
 
     def modify_photo_prophecy(self, new_photo_location: str) -> None:
-        pass
+        """Point to a new photo prophecy location.
+
+        :param new_photo_location: The new location for the photo.
+        """
+        self.prophecy_photo = new_photo_location
 
     def set_feedback_rating(self, rating: int) -> None:
-        pass
+        """Set feedback rating for the prophecy.
+
+        :param rating: A 1-5 number representing the rating
+        """
+        self.feedback_rating = rating
 
     def get_feedback_rating(self) -> int:
-        pass
+        """Return the feedback rating.
+
+        :returns: The feedback rating.
+        """
+        return self.feedback_rating
 
     def set_feedback_text(self, new_feedback_text: str) -> None:
-        pass
+        """Set feedback text.
+
+        :param new_feedback_text: Feedback text for the prophecy.
+        """
+        self.feedback_text = new_feedback_text
 
     def get_feedback_text(self) -> str:
-        pass
+        """Return feeback text.
+
+        :returns: Feedback text.
+        """
+        return self.feedback_text

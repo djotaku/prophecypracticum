@@ -64,7 +64,7 @@ def test_set_feedback_rating():
 def test_get_feedback_rating():
     """A user should be able to retrieve the feedback rating."""
     my_prophecy = prophecy.Prophecy(test_datetime, prophecy_text="You will be happy today.")
-    my_prophecy.feedback_rating == 3
+    my_prophecy.feedback_rating = 3
     rating = my_prophecy.get_feedback_rating()
     assert rating == 3
 
