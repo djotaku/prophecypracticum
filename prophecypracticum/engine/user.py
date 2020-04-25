@@ -2,6 +2,9 @@
 
 import attr
 from typing import Any
+from datetime import datetime
+
+from . import prophecy
 
 
 @attr.s(auto_attribs=True)
@@ -28,3 +31,21 @@ class User:
 
         :returns: The user's email address."""
         return self.email
+
+    def create_prophecy(self, prophetic_words: str = "", photo_location: str = "") -> None:
+        """Create a prophecy object.
+
+        Should also set self.prophecy_given to True.
+
+        :param prophetic_words: The text of the prophecy.
+        :param photo_location: The location of a photo prophecy.
+        """
+        now = datetime.now()
+        if prophetic_words != "":
+            prophecy.Prophecy(now, prophecy_text=prophetic_words)
+            self.prophecy_given = True
+        elif photo_location != "":
+            prophecy.Prophecy(now, prophecy_photo=photo_location)
+            self.prophecy_given = True
+        else:
+            print("Invalid, neither text nor photo entered.")

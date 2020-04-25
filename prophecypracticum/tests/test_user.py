@@ -26,21 +26,21 @@ def test_get_user_email():
 def test_create_text_prophecy():
     """The user should be able to create a text prophecy"""
     my_user = user.User("Christopher", "Chris@chris.com")
-    my_user.create_text_prophecy()
+    my_user.create_prophecy(prophetic_words="Such and such is true about your life.")
     assert my_user.prophecy_given is True
 
 
 def test_create_photo_prophecy():
     """The user should be able to create a text prophecy"""
     my_user = user.User("Christopher", "Chris@chris.com")
-    my_user.create_photo_prophecy()
+    my_user.create_prophecy(photo_location="/some/on/system")
     assert my_user.prophecy_given is True
 
 
 def test_provide_supplicant_id():
     """The system needs to be able to provide a supplicant ID to the user."""
     my_user = user.User("Christopher", "Chris@chris.com")
-    my_user.provide_supplicant_id(2)
+    my_user.get_supplicant_id(2)
     assert my_user.supplicant_id == 2
 
 
