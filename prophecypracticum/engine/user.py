@@ -23,7 +23,7 @@ class User:
     prophecy_received: bool = False
     prophecy_received_and_interacted: bool = False
 
-    def get_email_address(self):
+    def get_email_address(self) -> str:
         """Return user's email address.
 
         :returns: The user's email address."""
