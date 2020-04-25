@@ -57,11 +57,47 @@ class User:
         """
         self.supplicant_id = supplicant_id
 
+    def get_supplicant_id(self) -> int:
+        """Returns the supplicant ID.
+
+        :returns: Supplicant ID"""
+        return self.supplicant_id
+
+    def set_user_id(self, user_id: int) -> None:
+        """Set this user's ID
+
+        :param user_id: The ID that will identify this user.
+        """
+        self.my_id = user_id
+
+    def get_user_id(self) -> int:
+        """Return the user ID
+
+        :returns: The user's ID
+        """
+        return self.my_id
+
     def is_practicum_complete(self) -> bool:
         """Determine whether the practicum is complete.
 
-        :returns: True if completed and false if any step is incomplete."""
+        :returns: True if completed and false if any step is incomplete.
+        """
         return self.prophecy_given and self.prophecy_received and self.prophecy_received_and_interacted
 
     def prophecy_ready_to_read(self) -> None:
-        pass
+        """Let the user know there is a prophecy to read"""
+        self.prophecy_received = True
+
+    def change_email_address(self, new_email: str) -> None:
+        """Allow the user to update their email address.
+
+        :param new_email: The new email address to associate with the user.
+        """
+        self.email = new_email
+
+    def change_name(self, new_name: str) -> None:
+        """Allow the user to update their name.
+
+        :param new_name: The new name to associate with this user.
+        """
+        self.name = new_name

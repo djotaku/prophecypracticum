@@ -43,7 +43,29 @@ def test_provide_supplicant_id():
     my_user.set_supplicant_id(2)
     assert my_user.supplicant_id == 2
 
-# need to get the supplicant id, set the user id, get the user id
+
+def test_get_supplicant_id():
+    """The system needs to get the user's supplicant id"""
+    my_user = user.User("Christopher", "Chris@chris.com")
+    my_user.supplicant_id = 3
+    supplicant = my_user.get_supplicant_id()
+    assert supplicant == 3
+
+
+def test_set_user_id():
+    """The system needs to set the user's ID"""
+    my_user = user.User("Christopher", "Chris@chris.com")
+    my_user.set_user_id(4)
+    assert my_user.my_id == 4
+
+
+def test_get_user_id():
+    """The system needs to be able to get the user's id"""
+    my_user = user.User("Christopher", "Chris@chris.com")
+    my_user.my_id = 6
+    user_id = my_user.get_user_id()
+    assert user_id == 6
+
 
 def test_is_weekly_work_done_yes():
     """The system needs to be able to check whether the work is all done."""
