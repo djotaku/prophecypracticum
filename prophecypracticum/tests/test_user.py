@@ -40,15 +40,13 @@ def test_create_photo_prophecy():
 def test_provide_supplicant_id():
     """The system needs to be able to provide a supplicant ID to the user."""
     my_user = user.User("Christopher", "Chris@chris.com")
-    my_user.get_supplicant_id(2)
+    my_user.set_supplicant_id(2)
     assert my_user.supplicant_id == 2
 
+# need to get the supplicant id, set the user id, get the user id
 
 def test_is_weekly_work_done_yes():
-    """The system needs to be able to check whether the work is all done.
-
-    Not the purpose of an API unit test, but note to self: internally this will probably check to see if\
-    all 3 bool variables are true."""
+    """The system needs to be able to check whether the work is all done."""
     my_user = user.User("Christopher", "Chris@chris.com")
     my_user.prophecy_given = True
     my_user.prophecy_received = True
@@ -58,13 +56,10 @@ def test_is_weekly_work_done_yes():
 
 
 def test_is_weekly_work_done_no():
-    """The system needs to be able to check whether the work is all done.
-
-    Not the purpose of an API unit test, but note to self: internally this will probably check to see if\
-    all 3 bool variables are true."""
+    """The system needs to be able to check whether the work is all done."""
     my_user = user.User("Christopher", "Chris@chris.com")
     my_user.prophecy_given = True
-    my_user.prophecy_received = True
+    my_user.prophecy_received = False
     my_user.prophecy_received_and_interacted = True
     completed = my_user.is_practicum_complete()
     assert completed is False

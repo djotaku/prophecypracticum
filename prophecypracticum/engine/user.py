@@ -49,3 +49,19 @@ class User:
             self.prophecy_given = True
         else:
             print("Invalid, neither text nor photo entered.")
+
+    def set_supplicant_id(self, supplicant_id:int) -> None:
+        """Sets the supplicant id number.
+
+        :param supplicant_id: The id number for the supplicant.
+        """
+        self.supplicant_id = supplicant_id
+
+    def is_practicum_complete(self) -> bool:
+        """Determine whether the practicum is complete.
+
+        :returns: True if completed and false if any step is incomplete."""
+        return self.prophecy_given and self.prophecy_received and self.prophecy_received_and_interacted
+
+    def prophecy_ready_to_read(self) -> None:
+        pass
