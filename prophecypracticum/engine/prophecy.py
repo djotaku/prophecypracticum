@@ -21,3 +21,27 @@ class Prophecy:
     prophecy_photo: str = ""
     feedback_rating: int = 0
     feedback_text: str = ""
+
+    def get_text_prophecy(self) -> str:
+        pass
+
+    def modify_text_prophecy(self, new_prophecy: str) -> None:
+        pass
+
+    def get_photo_location(self) -> str:
+        pass
+
+    def modify_photo_prophecy(self, new_photo_location: str) -> None:
+        pass
+
+    def set_feedback_rating(self, rating: int) -> None:
+        pass
+
+    def get_feedback_rating(self) -> int:
+        pass
+
+    def set_feedback_text(self, new_feedback_text: str) -> None:
+        pass
+
+    def get_feedback_text(self) -> str:
+        pass
