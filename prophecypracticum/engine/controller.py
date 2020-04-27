@@ -33,8 +33,7 @@ class Controller:
         for the_user in self.users:
             if the_user.my_id == user_to_get:
                 return the_user
-            else:
-                raise error.IDError("Attempted to reference an ID that does not exist.")
+        raise error.IDError("Attempted to reference an ID that does not exist.")
 
     def add_supplicant(self, prophet_id: int, supplicant_id: int) -> None:
         """Assign a supplicant to a prophet.
