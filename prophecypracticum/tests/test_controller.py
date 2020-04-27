@@ -13,6 +13,28 @@ def test_create_user():
     assert my_controller.users[0].name == "John"
 
 
+def test_get_user_by_id():
+    """The system should be able to retrieve user by ID.
+
+    Do not check by name because name can be changed.
+    """
+    my_controller = controller.Controller()
+    my_controller.create_user("John", "john@fishermen.com", 1)
+    the_user = my_controller.get_user(1)
+    assert the_user.my_id == 1
+
+
+def test_get_user_by_id_bad_id():
+    """The system should be able to retrieve user by ID.
+
+    Do not check by name because name can be changed.
+    """
+    my_controller = controller.Controller()
+    my_controller.create_user("John", "john@fishermen.com", 1)
+    with pytest.raises(error.IDError):
+        my_controller.get_user(2)
+
+
 def test_assign_supplicant():
     """The system needs to assign a supplicant to a user."""
     my_controller = controller.Controller()
@@ -65,6 +87,10 @@ def test_email_alert_review_feedback():
 
 
 def test_user_writes_prophecy_and_it_is_delivered_to_supplicant():
+    """The system checks a user to see that a prophecy has been written and changed prophecy_received in supplicant."""
+    my_controller = controller.Controller()
+    my_controller.create_user("John", "john@fishermen.com", 1)
+    my_controller.create_user("Andrew", "andrew@fishermen.com", 2)
     pass
 
 
