@@ -50,7 +50,7 @@ class User:
         else:
             print("Invalid, neither text nor photo entered.")
 
-    def set_supplicant_id(self, supplicant_id:int) -> None:
+    def set_supplicant_id(self, supplicant_id: int) -> None:
         """Sets the supplicant id number.
 
         :param supplicant_id: The id number for the supplicant.
