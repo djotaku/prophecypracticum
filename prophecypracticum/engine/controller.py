@@ -47,3 +47,15 @@ class Controller:
             prophet.supplicant_id = supplicant_id
         else:
             raise error.IDError("Attempted to reference an ID that does not exist.")
+
+    def prophecy_completed_deliver_to_supplicant(self, user_id: int) -> None:
+        """Mark prophecy_received as True in supplicant.
+
+        The anticipated flow is that this is a method that will be run when the time for editing prophecies is over.
+        If it finds that the prophet has delivered the prophecy, it will mark supplicant's prophecy_received True.
+        Then when the email method runs, it will see that this is true and send the email.
+        """
+        prophet = self.get_user(user_id)
+        if prophet.prophecy_given is True:
+            supplicant = self.get_user(prophet.supplicant_id)
+            supplicant.prophecy_ready_to_read()

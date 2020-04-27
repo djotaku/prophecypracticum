@@ -91,7 +91,12 @@ def test_user_writes_prophecy_and_it_is_delivered_to_supplicant():
     my_controller = controller.Controller()
     my_controller.create_user("John", "john@fishermen.com", 1)
     my_controller.create_user("Andrew", "andrew@fishermen.com", 2)
-    pass
+    john = my_controller.get_user(1)
+    andrew = my_controller.get_user(2)
+    john.prophecy_given = True
+    john.supplicant_id = 2
+    my_controller.prophecy_completed_deliver_to_supplicant(1)
+    assert andrew.prophecy_received is True
 
 
 def test_user_reads_prophecy():
