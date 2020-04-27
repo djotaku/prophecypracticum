@@ -2,6 +2,7 @@
 
 import typing
 
+from . import error
 from . import user
 from . import prophecy
 
@@ -26,8 +27,9 @@ class Controller:
         :param supplicant_id: user_id for the supplicant - should exist in users.
         """
         for prophet in self.users:
-            if prophet.my_id == prophet_id:
+            if prophet.my_id == prophet_id and any(supplicant.my_id == supplicant_id for supplicant in self.users):
                 prophet.supplicant_id = supplicant_id
                 break
             else:
-                print("I will change this in the future to raise an exception because it should never happen")
+                raise error.IDError("Attempted to reference an ID that does not exist.")
+

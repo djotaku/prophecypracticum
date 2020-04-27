@@ -1,6 +1,9 @@
 """Test controller methods."""
 
+import pytest
+
 from prophecypracticum.engine import controller
+from prophecypracticum.engine import error
 
 
 def test_create_user():
@@ -18,6 +21,22 @@ def test_assign_supplicant():
     my_controller.create_user("Matthew", "andrew@taxcollectors.com", 3)
     my_controller.add_supplicant(1, 3)
     assert my_controller.users[0].supplicant_id == 3
+
+
+def test_assign_supplicant_bad_prophet():
+    my_controller = controller.Controller()
+    my_controller.create_user("John", "john@fishermen.com", 1)
+    my_controller.create_user("Andrew", "andrew@fishermen.com", 2)
+    with pytest.raises(error.IDError):
+        my_controller.add_supplicant(3, 2)
+
+
+def test_assign_supplicant_bad_supplicant():
+    my_controller = controller.Controller()
+    my_controller.create_user("John", "john@fishermen.com", 1)
+    my_controller.create_user("Andrew", "andrew@fishermen.com", 2)
+    with pytest.raises(error.IDError):
+        my_controller.add_supplicant(1, 3)
 
 
 def test_email_alert_user_week_has_begun():
