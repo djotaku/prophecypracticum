@@ -3,6 +3,23 @@
 from prophecypracticum.engine import controller
 
 
+def test_create_user():
+    """The system needs to create users."""
+    my_controller = controller.Controller()
+    my_controller.create_user("John", "john@fishermen.com", 1)
+    assert my_controller.users[0].name == "John"
+
+
+def test_assign_supplicant():
+    """The system needs to assign a supplicant to a user."""
+    my_controller = controller.Controller()
+    my_controller.create_user("John", "john@fishermen.com", 1)
+    my_controller.create_user("Andrew", "andrew@fishermen.com", 2)
+    my_controller.create_user("Matthew", "andrew@taxcollectors.com", 3)
+    my_controller.add_supplicant(1, 3)
+    assert my_controller.users[0].supplicant_id == 3
+
+
 def test_email_alert_user_week_has_begun():
     """The system will send an email to the user Sun 1800 letting them know the week's practicum has begun."""
     pass
