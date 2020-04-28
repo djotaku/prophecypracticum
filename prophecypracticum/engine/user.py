@@ -12,15 +12,20 @@ class User:
 
     :param self.name: Name of the user participating in the practicum.
     :param self.email: Email address of the user participating in the practicum.
-    :param self.user_id: The users ID in the database.
+    :param self.my_id: The users ID in the database.
+    :param self.supplicant_id: The ID of this prophet's supplicant
+    :param self.prophet_id: The ID of this supplicant's prophet.
     :param self.prophecy_given: A boolean that stores whether the prophecy has been recorded.
+    :param self.prophecy_received: Marked True when prophecy is ready to read.
     :param self.prophecy_received_and_interacted: A boolean that stores whether this user has interacted with the \
     prophecy they received.
+    :param self.this_week_prophecy: This week's prophecy.
     """
     name: str
     email: str
     my_id: int = 0
     supplicant_id: int = 0
+    prophet_id: int = 0
     prophecy_given: bool = False
     prophecy_received: bool = False
     prophecy_received_and_interacted: bool = False

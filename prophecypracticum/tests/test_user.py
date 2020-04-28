@@ -10,9 +10,11 @@ def test_user_creation():
     assert my_user.email == "Chris@chris.com"
     assert my_user.my_id == 0
     assert my_user.supplicant_id == 0
+    assert my_user.prophet_id == 0
     assert my_user.prophecy_given is False
     assert my_user.prophecy_received is False
     assert my_user.prophecy_received_and_interacted is False
+    assert my_user.this_week_prophecy is None
 
 
 # API unit tests. Any changes here should signify a change in major version number
