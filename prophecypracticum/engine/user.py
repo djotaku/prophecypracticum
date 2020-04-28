@@ -1,7 +1,6 @@
 """A user participating in the Prophecy Practicum."""
 
 import attr
-from typing import Any
 from datetime import datetime
 
 from . import prophecy
@@ -25,6 +24,7 @@ class User:
     prophecy_given: bool = False
     prophecy_received: bool = False
     prophecy_received_and_interacted: bool = False
+    this_week_prophecy: prophecy.Prophecy = None
 
     def get_email_address(self) -> str:
         """Return user's email address.
@@ -42,13 +42,22 @@ class User:
         """
         now = datetime.now()
         if prophetic_words != "":
-            prophecy.Prophecy(now, prophecy_text=prophetic_words)
+            self.this_week_prophecy = prophecy.Prophecy(now, prophecy_text=prophetic_words)
             self.prophecy_given = True
         elif photo_location != "":
-            prophecy.Prophecy(now, prophecy_photo=photo_location)
+            self.this_week_prophecy = prophecy.Prophecy(now, prophecy_photo=photo_location)
             self.prophecy_given = True
         else:
             print("Invalid, neither text nor photo entered.")
+
+    def get_prophecy(self) -> prophecy.Prophecy:
+        """Return a prophecy object.
+
+        Need to change to get previous prophecies, but how to do that depends on how many weeks will be kept.
+
+        :returns: A prophecy object.
+        """
+        return self.this_week_prophecy
 
     def set_supplicant_id(self, supplicant_id: int) -> None:
         """Sets the supplicant id number.

@@ -106,3 +106,11 @@ def test_update_username():
     my_user = user.User("Christopher", "Chris@chris.com")
     my_user.change_name("John")
     assert my_user.name == "John"
+
+
+def test_get_prophecy():
+    """The system should be able to retrieve a prophecy from a user."""
+    my_user = user.User("Peter", "Formerly_Simon@chris.com")
+    my_user.create_prophecy(prophetic_words="You will be like a rock.")
+    this_prophecy = my_user.get_prophecy()
+    assert this_prophecy.get_text_prophecy() == "You will be like a rock."
