@@ -29,7 +29,9 @@ class User:
     prophecy_given: bool = False
     prophecy_received: bool = False
     prophecy_received_and_interacted: bool = False
-    this_week_prophecy: prophecy.Prophecy = None
+
+    def __attrs_post_init__(self):
+        self.this_week_prophecy: prophecy.Prophecy
 
     def get_email_address(self) -> str:
         """Return user's email address.
