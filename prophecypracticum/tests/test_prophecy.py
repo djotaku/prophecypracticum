@@ -60,6 +60,7 @@ def test_set_feedback_rating():
     my_prophecy.set_feedback_rating(4)
     assert my_prophecy.feedback_rating == 4
 
+
 def test_change_feedback_rating():
     """The supplicant should be able to change a feedback rating."""
     my_prophecy = prophecy.Prophecy(test_datetime, prophecy_text="You change your feedback today.")
@@ -68,6 +69,7 @@ def test_change_feedback_rating():
     assert old_rating == 4
     my_prophecy.set_feedback_rating(2)
     assert my_prophecy.get_feedback_rating() == 2
+
 
 def test_get_feedback_rating():
     """A user should be able to retrieve the feedback rating."""
@@ -90,3 +92,11 @@ def test_get_feedback_text():
     my_prophecy.feedback_text = "It was a little vague."
     text = my_prophecy.get_feedback_text()
     assert text == "It was a little vague."
+
+def test_modify_feedback_text():
+    """The supplicant should be able to modify the text of their feedback."""
+    my_prophecy = prophecy.Prophecy(test_datetime, prophecy_text="You will change your mind today.")
+    my_prophecy.set_feedback_text("Wow, that was so incredibly relevant.")
+    assert my_prophecy.feedback_text == "Wow, that was so incredibly relevant."
+    my_prophecy.set_feedback_text("Actually, that didn't mean anything to me.")
+    assert my_prophecy.feedback_text == "Actually, that didn't mean anything to me."
