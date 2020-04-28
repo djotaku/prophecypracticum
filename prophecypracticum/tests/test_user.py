@@ -10,9 +10,11 @@ def test_user_creation():
     assert my_user.email == "Chris@chris.com"
     assert my_user.my_id == 0
     assert my_user.supplicant_id == 0
+    assert my_user.prophet_id == 0
     assert my_user.prophecy_given is False
     assert my_user.prophecy_received is False
     assert my_user.prophecy_received_and_interacted is False
+    assert my_user.this_week_prophecy is None
 
 
 # API unit tests. Any changes here should signify a change in major version number
@@ -106,3 +108,11 @@ def test_update_username():
     my_user = user.User("Christopher", "Chris@chris.com")
     my_user.change_name("John")
     assert my_user.name == "John"
+
+
+def test_get_prophecy():
+    """The system should be able to retrieve a prophecy from a user."""
+    my_user = user.User("Peter", "Formerly_Simon@chris.com")
+    my_user.create_prophecy(prophetic_words="You will be like a rock.")
+    this_prophecy = my_user.get_prophecy()
+    assert this_prophecy.get_text_prophecy() == "You will be like a rock."

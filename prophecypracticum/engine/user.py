@@ -1,7 +1,6 @@
 """A user participating in the Prophecy Practicum."""
 
 import attr
-from typing import Any
 from datetime import datetime
 
 from . import prophecy
@@ -13,18 +12,24 @@ class User:
 
     :param self.name: Name of the user participating in the practicum.
     :param self.email: Email address of the user participating in the practicum.
-    :param self.user_id: The users ID in the database.
+    :param self.my_id: The users ID in the database.
+    :param self.supplicant_id: The ID of this prophet's supplicant
+    :param self.prophet_id: The ID of this supplicant's prophet.
     :param self.prophecy_given: A boolean that stores whether the prophecy has been recorded.
+    :param self.prophecy_received: Marked True when prophecy is ready to read.
     :param self.prophecy_received_and_interacted: A boolean that stores whether this user has interacted with the \
     prophecy they received.
+    :param self.this_week_prophecy: This week's prophecy.
     """
     name: str
     email: str
     my_id: int = 0
     supplicant_id: int = 0
+    prophet_id: int = 0
     prophecy_given: bool = False
     prophecy_received: bool = False
     prophecy_received_and_interacted: bool = False
+    this_week_prophecy: prophecy.Prophecy = None
 
     def get_email_address(self) -> str:
         """Return user's email address.
@@ -42,13 +47,22 @@ class User:
         """
         now = datetime.now()
         if prophetic_words != "":
-            prophecy.Prophecy(now, prophecy_text=prophetic_words)
+            self.this_week_prophecy = prophecy.Prophecy(now, prophecy_text=prophetic_words)
             self.prophecy_given = True
         elif photo_location != "":
-            prophecy.Prophecy(now, prophecy_photo=photo_location)
+            self.this_week_prophecy = prophecy.Prophecy(now, prophecy_photo=photo_location)
             self.prophecy_given = True
         else:
             print("Invalid, neither text nor photo entered.")
+
+    def get_prophecy(self) -> prophecy.Prophecy:
+        """Return a prophecy object.
+
+        Need to change to get previous prophecies, but how to do that depends on how many weeks will be kept.
+
+        :returns: A prophecy object.
+        """
+        return self.this_week_prophecy
 
     def set_supplicant_id(self, supplicant_id: int) -> None:
         """Sets the supplicant id number.
