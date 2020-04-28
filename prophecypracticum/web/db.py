@@ -22,7 +22,7 @@ def close_db(e=None):
         db.close()
 
 
-def init_db()
+def init_db():
     db = get_db()
 
     with current_app.open_resource('schema.sql') as f:  # open resource allows you not to worry about file path
