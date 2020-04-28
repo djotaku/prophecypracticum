@@ -30,7 +30,13 @@ def create_app(test_config=None):
     def hello():
         return 'Hello, World!'
 
+    # temporarily index page
+    @app.route('/')
+    def index():
+        return "Nothing implemented yet."
+
     db.init_app(app)
     app.register_blueprint(auth.bp)
+    app.add_url_rule('/', endpoint='index')
 
     return app
