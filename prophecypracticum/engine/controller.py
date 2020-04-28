@@ -44,6 +44,8 @@ class Controller:
         if any(supplicant.my_id == supplicant_id for supplicant in self.users):
             prophet = self.get_user(prophet_id)
             prophet.supplicant_id = supplicant_id
+            supplicant = self.get_user(supplicant_id)
+            supplicant.prophet_id = prophet_id
         else:
             raise error.IDError("Attempted to reference an ID that does not exist.")
 
@@ -58,3 +60,13 @@ class Controller:
         if prophet.prophecy_given is True:
             supplicant = self.get_user(prophet.supplicant_id)
             supplicant.prophecy_ready_to_read()
+
+    def retrieve_prophecy_for_supplicant(self, supplicant_id: int) -> prophecy.Prophecy:
+        """Retrieve prophecy from supplicant's prophet.
+
+        :param supplicant_id: The ID of the user who needs to get their prophecy.
+        :returns: A prophecy object.
+        """
+        supplicant = self.get_user(supplicant_id)
+        prophet = self.get_user(supplicant.prophet_id)
+        return prophet.get_prophecy()

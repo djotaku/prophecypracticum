@@ -70,7 +70,7 @@ class Prophecy:
         self.feedback_text = new_feedback_text
 
     def get_feedback_text(self) -> str:
-        """Return feeback text.
+        """Return feedback text.
 
         :returns: Feedback text.
         """
