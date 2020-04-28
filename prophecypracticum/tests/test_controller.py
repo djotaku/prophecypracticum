@@ -13,21 +13,6 @@ def test_create_user():
     assert my_controller.users[0].name == "John"
 
 
-def test_delete_user():
-    """The system needs to delete users.
-
-    Do not delete by name because name can be changed.
-    """
-    my_controller = controller.Controller()
-    my_controller.create_user("Judas", "judas@disloyal.com", 1)
-    my_controller.create_user("Peter", "peter@fishermen.com", 2)
-    my_controller.create_user("Andrew", "andrew@fishermen.com", 3)
-    assert my_controller.users[0].my_id == 1
-    my_controller.delete_user(1)
-    with pytest.raises(error.IDError):
-        my_controller.get_user(1)
-
-
 def test_get_user_by_id():
     """The system should be able to retrieve user by ID.
 
