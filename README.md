@@ -1,6 +1,6 @@
 # Prophecy Practicum
 
-[![Documentation Status](https://readthedocs.org/projects/prophecy-practicum/badge/?version=latest)](https://prophecy-practicum.readthedocs.io/en/latest/?badge=latest)
+[![Documentation Status](https://readthedocs.org/projects/prophecy-practicum/badge/?version=latest)](https://prophecy-practicum.readthedocs.io/en/latest/?badge=latest) ![Lint, PyTest, MyPy](https://github.com/djotaku/prophecypracticum/workflows/Lint,%20PyTest,%20MyPy/badge.svg)
 
 Documentation at: https://prophecy-practicum.readthedocs.io/en/latest/
 
