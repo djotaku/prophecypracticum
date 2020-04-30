@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block header %}
+<h1>{% block title%} Welcome to Prophecy Practicum {% endblock%}</h1>
+{% endblock %}
+
+{% block content %}
+<div style="background-color:lightblue;text-align:center">
+<a class="action" href="{{ url_for('practicum.create_prophecy')}}">Record a prophecy (you are the prophet)</a>
+
+<p>Edit Your Prophecy (you are prophet)</p>
+</div>
+
+<div style="background-color:pink">
+<p>View a Prophecy (you are the supplicant)</p>
+</div>
+{% endblock%}

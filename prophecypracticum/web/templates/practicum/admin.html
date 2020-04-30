@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block header %}
+<h1>{% block title%} Admin Page {% endblock%}</h1>
+{% endblock %}
+
+{% block content %}
+<div>
+    Assign Supplicant to Prophet
+<form method="post">
+    <label for="prophet">Prophet</label>
+    <input name="prophet" id="prophet" required>
+    <label for="supplicant">Supplicant</label>
+    <input type="supplicant" name="supplicant" id="supplicant" required>
+    <input type="submit" value="Set Supplicant">
+</form>
+    </div>
+{% endblock%}

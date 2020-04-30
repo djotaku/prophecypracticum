@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block header %}
+<h1>{% block title %} Write a Prophecy {% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+<form method="post">
+    <label for="prophecy">Prophecy</label>
+    <textarea name="prophecy" id="prophecy" required>Enter Prophecy Here</textarea>
+    <input type="submit" value="Submit Prophecy">
+</form>
+{% endblock %}

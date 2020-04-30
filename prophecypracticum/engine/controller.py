@@ -6,6 +6,8 @@ from . import error
 from . import user
 from . import prophecy
 
+from prophecypracticum.web.db import get_db
+
 
 class Controller:
     def __init__(self):
@@ -35,19 +37,20 @@ class Controller:
                 return the_user
         raise error.IDError("Attempted to reference an ID that does not exist.")
 
-    def add_supplicant(self, prophet_id: int, supplicant_id: int) -> None:
+    @classmethod
+    def add_supplicant(cls, prophet_id: int, supplicant_id: int) -> None:
         """Assign a supplicant to a prophet.
 
         :param prophet_id: user_id for the prophet - should exist in users.
         :param supplicant_id: user_id for the supplicant - should exist in users.
         """
-        if any(supplicant.my_id == supplicant_id for supplicant in self.users):
-            prophet = self.get_user(prophet_id)
-            prophet.supplicant_id = supplicant_id
-            supplicant = self.get_user(supplicant_id)
-            supplicant.prophet_id = prophet_id
-        else:
-            raise error.IDError("Attempted to reference an ID that does not exist.")
+        db = get_db()
+        db.execute("UPDATE user SET supplicant_id = ? where id = ?",
+                   (supplicant_id, prophet_id))
+        db.commit()
+        db.execute("UPDATE user SET prophet_id = ? where id = ?",
+                   (prophet_id, supplicant_id))
+        db.commit()
 
     def prophecy_completed_deliver_to_supplicant(self, user_id: int) -> None:
         """Mark prophecy_received as True in supplicant.
