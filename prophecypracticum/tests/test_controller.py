@@ -19,13 +19,13 @@ def test_delete_user():
     Do not delete by name because name can be changed.
     """
     my_controller = controller.Controller()
-    my_controller.create_user("Judas", "judas@disloyal.com", 1)
-    my_controller.create_user("Peter", "peter@fishermen.com", 2)
+    my_controller.create_user("Peter", "peter@fishermen.com", 1)
+    my_controller.create_user("Judas", "judas@betrayal.com", 2)
     my_controller.create_user("Andrew", "andrew@fishermen.com", 3)
-    assert my_controller.users[0].my_id == 1
-    my_controller.delete_user(1)
+    assert my_controller.users[1].my_id == 2
+    my_controller.delete_user(2)
     with pytest.raises(error.IDError):
-        my_controller.get_user(1)
+        my_controller.get_user(2)
 
 
 def test_get_user_by_id():

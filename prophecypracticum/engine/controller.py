@@ -30,6 +30,7 @@ class Controller:
         for the_user in self.users:
             if the_user.my_id == user_id_to_delete:
                 self.users.remove(the_user)
+                return
         raise error.IDError("Attempted to delete an ID that does not exist.")
 
     def get_user(self, user_to_get: int) -> user.User:
