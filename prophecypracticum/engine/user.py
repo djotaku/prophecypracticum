@@ -19,6 +19,11 @@ class User:
     :param self.prophecy_received: Marked True when prophecy is ready to read.
     :param self.prophecy_received_and_interacted: A boolean that stores whether this user has interacted with the \
     prophecy they received.
+    :param self.prophecy_given: A boolean that stores whether they given a prophetic word
+    :param self.prophecy_received: Marked True when user has received a prophecy.
+    :param self.prophecy_received_and_interacted: A boolean that stores whether the user has received a prophecy \
+    and has interacted with it.
+
     :param self.this_week_prophecy: This week's prophecy.
     """
     name: str
