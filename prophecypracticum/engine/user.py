@@ -16,13 +16,11 @@ class User:
     :param self.supplicant_id: The ID of this prophet's supplicant
     :param self.prophet_id: The ID of this supplicant's prophet.
     :param self.prophecy_given: A boolean that stores whether the prophecy has been recorded.
-    :param self.prophecy_received: Marked True when prophecy is ready to read.
-    :param self.prophecy_received_and_interacted: A boolean that stores whether this user has interacted with the \
-    prophecy they received.
     :param self.prophecy_given: A boolean that stores whether they given a prophetic word
     :param self.prophecy_received: Marked True when user has received a prophecy.
     :param self.prophecy_received_and_interacted: A boolean that stores whether the user has received a prophecy \
     and has interacted with it.
+    :param self.prophecy_feedback_reviewed: A bool that stores if prophet has reviewed feedback on given prophecy
 
     :param self.this_week_prophecy: This week's prophecy.
     """
@@ -34,6 +32,7 @@ class User:
     prophecy_given: bool = False
     prophecy_received: bool = False
     prophecy_received_and_interacted: bool = False
+    prophecy_feedback_reviewed: bool = False
 
     def __attrs_post_init__(self):
         self.this_week_prophecy: prophecy.Prophecy

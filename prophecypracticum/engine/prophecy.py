@@ -75,3 +75,10 @@ class Prophecy:
         :returns: Feedback text.
         """
         return self.feedback_text
+
+    def is_feedback_available(self) -> bool:
+        """Return True or False to the question "is feedback available"
+
+        :returns: bool answer to, is feedback available?
+        """
+        return self.feedback_rating != 0 and self.get_feedback_text() != ""
