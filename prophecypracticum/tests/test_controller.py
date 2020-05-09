@@ -13,6 +13,21 @@ def test_create_user():
     assert my_controller.users[0].name == "John"
 
 
+def test_delete_user():
+    """The system needs to delete users.
+
+    Do not delete by name because name can be changed.
+    """
+    my_controller = controller.Controller()
+    my_controller.create_user("Peter", "peter@fishermen.com", 1)
+    my_controller.create_user("Judas", "judas@betrayal.com", 2)
+    my_controller.create_user("Andrew", "andrew@fishermen.com", 3)
+    assert my_controller.users[1].my_id == 2
+    my_controller.delete_user(2)
+    with pytest.raises(error.IDError):
+        my_controller.get_user(2)
+
+
 def test_get_user_by_id():
     """The system should be able to retrieve user by ID.
 
@@ -114,23 +129,71 @@ def test_user_reads_prophecy():
     my_controller.create_user("Andrew", "andrew@fishermen.com", 2)
     john = my_controller.get_user(1)
     john.create_prophecy(prophetic_words="There will be 10 more of us.")
+    john.prophecy_given = True
     my_controller.add_supplicant(1, 2)
     my_controller.prophecy_completed_deliver_to_supplicant(1)
     the_prophecy = my_controller.retrieve_prophecy_for_supplicant(2)
     assert the_prophecy.get_text_prophecy() == "There will be 10 more of us."
 
 
-def test_supplicant_reviews_prophecy_and_that_is_delivered_to_prophet():
-    pass
+def test_user_reads_prophecy_and_interacts_with_it():
+    """The system allows the user to read their prophecy and give feedback, aka 'interacts with it'
+
+    Usually I make sure that each unit test stands COMPLETELY alone and doesn't depend on anything else working.
+    But in this case, I think that would be a bit over-complicated. Also, by doing TDD, we will know something
+    has broken by other tests failing as well. (I hope).
+
+    In essence this is closer to an integration test.
+    """
+    my_controller = controller.Controller()
+    my_controller.create_user("John", "john@fishermen.com", 1)
+    my_controller.create_user("Andrew", "andrew@fishermen.com", 2)
+    john = my_controller.get_user(1)
+    john.create_prophecy(prophetic_words="There will be 10 more of us.")
+    john.prophecy_given = True
+    my_controller.add_supplicant(1, 2)
+    my_controller.prophecy_completed_deliver_to_supplicant(1)
+    the_prophecy = my_controller.retrieve_prophecy_for_supplicant(2)
+    assert the_prophecy.get_text_prophecy() == "There will be 10 more of us."
+    # mark supplicant has received prophecy and gives it feedback
+    andrew = my_controller.get_user(2)
+    andrew.prophecy_received = True
+    the_prophecy.set_feedback_rating(5)
+    the_prophecy.set_feedback_text("Truly amazing")
+    assert the_prophecy.get_feedback_text() == "Truly amazing"
+    assert the_prophecy.get_feedback_rating() == 5
+    andrew.prophecy_received_and_interacted = True
 
 
 def test_prophet_reads_review():
-    pass
+    """The system allows the prophet to read feedback"""
+    my_controller = controller.Controller()
+    my_controller.create_user("John", "john@fishermen.com", 1)
+    my_controller.create_user("Andrew", "Andrew@fishermen.com", 2)
+    john = my_controller.get_user(1)
+    john.create_prophecy(prophetic_words="There will be 10 more of us.")
+    my_controller.add_supplicant(1, 2)
+    my_controller.prophecy_completed_deliver_to_supplicant(1)
+    the_prophecy = my_controller.retrieve_prophecy_for_supplicant(2)
+    assert the_prophecy.get_text_prophecy() == "There will be 10 more of us."
+    # mark supplicant has received prophecy and gives it feedback
+    andrew = my_controller.get_user(2)
+    andrew.prophecy_received = True
+    the_prophecy.set_feedback_rating(5)
+    the_prophecy.set_feedback_text("Truly amazing")
+    assert the_prophecy.get_feedback_text() == "Truly amazing"
+    assert the_prophecy.get_feedback_rating() == 5
+    andrew.prophecy_received_and_interacted = True
+
+    # test if feedback is ready for review
+    assert the_prophecy.is_feedback_available() is True
+    # ToDo: insert some kind of action which represent retrieval of prophecy feedback
+    # For this use case, this these comments serves as the prophet reading the review/feedback
+    john.prophecy_feedback_reviewed = True
+    assert john.prophecy_feedback_reviewed is True
 
 
 def test_supplicant_reads_previous_prophecy():
     pass
 
-
 # moderator actions
-

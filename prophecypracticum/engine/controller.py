@@ -21,6 +21,18 @@ class Controller:
         this_user = user.User(username, user_email, user_id)
         self.users.append(this_user)
 
+    def delete_user(self, user_id_to_delete: int) -> None:
+        """Delete a user from user list.
+
+        :param user_id_to_delete: The ID that identifies this user in the system.
+        :raises: error.IDError
+        """
+        for the_user in self.users:
+            if the_user.my_id == user_id_to_delete:
+                self.users.remove(the_user)
+                return
+        raise error.IDError("Attempted to delete an ID that does not exist.")
+
     def get_user(self, user_to_get: int) -> user.User:
         """Return the user requested by ID.
 
