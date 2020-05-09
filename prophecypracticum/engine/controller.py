@@ -21,7 +21,7 @@ class Controller:
         this_user = user.User(username, user_email, user_id)
         self.users.append(this_user)
 
-    def delete_user(self, user_id_to_delete: int) -> int:
+    def delete_user(self, user_id_to_delete: int) -> None:
         """Delete a user from user list.
 
         :param user_id_to_delete: The ID that identifies this user in the system.
