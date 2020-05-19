@@ -52,7 +52,7 @@ def login():
 
         if error is None:
             session.clear()
-            session['user_id'] = user['id']  # makes a cookie
+            session['user_id'] = this_user.id  # makes a cookie
             return redirect(url_for('index'))
 
         flash(error)
