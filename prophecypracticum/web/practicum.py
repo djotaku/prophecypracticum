@@ -4,7 +4,6 @@ from flask import Blueprint, flash, g, redirect, render_template, request, url_f
 from werkzeug.exceptions import abort
 
 from prophecypracticum.web.auth import login_required
-from prophecypracticum.web.db import get_db
 
 bp = Blueprint('practicum', __name__)
 
@@ -23,3 +22,5 @@ def create_prophecy():
         return redirect(url_for('practicum.index'))
 
     return render_template('practicum/create_prophecy.html')
+
+# for listing prophecies, use something similar to the blog template (from flask example) with the Jinja loop.

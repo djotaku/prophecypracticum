@@ -4,7 +4,6 @@ from flask import Blueprint, flash, g, redirect, render_template, request, url_f
 from werkzeug.exceptions import abort
 
 from prophecypracticum.web.auth import login_required
-from prophecypracticum.web.db import get_db
 
 from prophecypracticum.engine.controller import Controller
 

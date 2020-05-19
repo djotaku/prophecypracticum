@@ -6,8 +6,6 @@ from . import error
 from . import user
 from . import prophecy
 
-from prophecypracticum.web.db import get_db
-
 
 class Controller:
     def __init__(self):
@@ -44,13 +42,14 @@ class Controller:
         :param prophet_id: user_id for the prophet - should exist in users.
         :param supplicant_id: user_id for the supplicant - should exist in users.
         """
-        db = get_db()
-        db.execute("UPDATE user SET supplicant_id = ? where id = ?",
-                   (supplicant_id, prophet_id))
-        db.commit()
-        db.execute("UPDATE user SET prophet_id = ? where id = ?",
-                   (prophet_id, supplicant_id))
-        db.commit()
+        pass
+        #db = get_db()
+        #db.execute("UPDATE user SET supplicant_id = ? where id = ?",
+                   #(supplicant_id, prophet_id))
+        #db.commit()
+        #db.execute("UPDATE user SET prophet_id = ? where id = ?",
+                   #(prophet_id, supplicant_id))
+        #db.commit()
 
     def prophecy_completed_deliver_to_supplicant(self, user_id: int) -> None:
         """Mark prophecy_received as True in supplicant.

@@ -4,15 +4,14 @@ import attr
 from datetime import datetime
 
 from . import prophecy
+from prophecypracticum.web.db import db
 
 
-@attr.s(auto_attribs=True)
-class User:
+class User(db.Model):
     """The user participating in the Prophecy Practicum.
 
     :param self.name: Name of the user participating in the practicum.
     :param self.email: Email address of the user participating in the practicum.
-    :param self.my_id: The users ID in the database.
     :param self.supplicant_id: The ID of this prophet's supplicant
     :param self.prophet_id: The ID of this supplicant's prophet.
     :param self.prophecy_given: A boolean that stores whether the prophecy has been recorded.
@@ -21,15 +20,38 @@ class User:
     prophecy they received.
     :param self.this_week_prophecy: This week's prophecy.
     """
-    name: str
-    email: str
-    my_id: int = 0
-    supplicant_id: int = 0
-    prophet_id: int = 0
-    prophecy_given: bool = False
-    prophecy_received: bool = False
-    prophecy_received_and_interacted: bool = False
-    this_week_prophecy: prophecy.Prophecy = None
+
+    __tablename__ = "user"
+
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(80))
+    password = db.Column(db.String(80))
+    email = db.Column(db.String(80))
+    supplicant_id = db.Column(db.Integer)
+    prophet_id = db.Column(db.Integer)
+
+    def __init__(self, name, password, email, supplicant_id=0, prophet_id=0):
+        self.name: str = name
+        self.password = password
+        self.email: str = email
+        self.supplicant_id = supplicant_id
+        self.prophet_id: int = prophet_id
+        self.prophecy_given: bool = False
+        self.prophecy_received: bool = False
+        self.prophecy_received_and_interacted: bool = False
+        self.this_week_prophecy: prophecy.Prophecy = None
+
+    @classmethod
+    def find_by_name(cls, name):
+        return cls.query.filter_by(name=name).first()
+
+    @classmethod
+    def find_by_id(cls, the_id):
+        return cls.query.filter_by(id=the_id).first()
+
+    def save_to_db(self):
+        db.session.add(self)
+        db.session.commit()
 
     def get_email_address(self) -> str:
         """Return user's email address.
@@ -82,7 +104,7 @@ class User:
 
         :param user_id: The ID that will identify this user.
         """
-        self.my_id = user_id
+        self.id = user_id
 
     def get_user_id(self) -> int:
         """Return the user ID
