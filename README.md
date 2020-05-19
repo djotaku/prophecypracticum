@@ -4,6 +4,8 @@
 
 Documentation at: https://prophecy-practicum.readthedocs.io/en/latest/
 
+current small hack: url/admin brings up admin panel
+
 This package has two submodules: engine and web. Most of the logic should happen in the engine and the web will present submodule will provide the user interface (and maybe a JSON API)
 
 engine.controller.py will have the admin commands so it will create engine.user.py Users. In the finished product this will be from an admin page in the web interface. Then those Users will then create engine.prophecy Prophecy objects. Again, in the finished product this will be done via the web interface.
