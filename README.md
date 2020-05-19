@@ -4,7 +4,7 @@
 
 Documentation at: https://prophecy-practicum.readthedocs.io/en/latest/
 
-current small hack: url/admin brings up admin panel
+current small hack: url/admin brings up admin panel (should require login)
 
 This package has two submodules: engine and web. Most of the logic should happen in the engine and the web will present submodule will provide the user interface (and maybe a JSON API)
 
