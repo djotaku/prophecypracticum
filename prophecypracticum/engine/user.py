@@ -1,6 +1,5 @@
 """A user participating in the Prophecy Practicum."""
 
-import attr
 from datetime import datetime
 
 from . import prophecy

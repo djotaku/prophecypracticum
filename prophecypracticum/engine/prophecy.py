@@ -1,11 +1,10 @@
 """A prophecy."""
 
-import attr
 from datetime import datetime
+from prophecypracticum.web.db import db
 
 
-@attr.s(auto_attribs=True)
-class Prophecy:
+class Prophecy(db.Model):
     """The Prophecy Object.
 
     feedback_rating is initialized to 0 as a check of whether feedback has been input.
@@ -16,11 +15,25 @@ class Prophecy:
     :param self.feedback_rating: Rating on a scale of 1-5 of how relevant the prophecy was.
     :param self.feedback_text: If feedback was given on the prophecy, store it as text here.
     """
-    date_of_prophecy: datetime
-    prophecy_text: str = ""
-    prophecy_photo: str = ""
-    feedback_rating: int = 0
-    feedback_text: str = ""
+
+    __tablename__ = "prophecy"
+
+    id = db.Column(db.Integer, primary_key=True)
+    prophecy_text = db.Column(db.String(80))
+    prophecy_photo = db.Column(db.String(80))
+    feedback_rating = db.Column(db.Integer)
+    feedback_text = db.Column(db.String(80))
+    prophet_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+    prophet = db.relationship('User')
+
+    def __init__(self, prophecy_text, prophecy_photo, feedback_rating, feedback_text, prophet_id):
+        # date_of_prophecy: datetime
+        self.prophecy_text: str = prophecy_text
+        self.prophecy_photo: str = prophecy_photo
+        self.feedback_rating: int = feedback_rating
+        self.feedback_text: str = feedback_text
+        self.prophet_id: int = prophet_id
+        # date_of_prophecy: datetime
 
     def get_text_prophecy(self) -> str:
         """Return prophecy text.
