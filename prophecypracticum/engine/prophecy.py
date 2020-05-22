@@ -26,14 +26,17 @@ class Prophecy(db.Model):
     prophet_id = db.Column(db.Integer, db.ForeignKey('user.id'))
     prophet = db.relationship('User')
 
-    def __init__(self, prophecy_text, prophecy_photo, feedback_rating, feedback_text, prophet_id):
-        # date_of_prophecy: datetime
+    def __init__(self, prophecy_text="", prophecy_photo="", feedback_rating=0, feedback_text="", prophet_id=0):
         self.prophecy_text: str = prophecy_text
         self.prophecy_photo: str = prophecy_photo
         self.feedback_rating: int = feedback_rating
         self.feedback_text: str = feedback_text
         self.prophet_id: int = prophet_id
         # date_of_prophecy: datetime
+
+    def save_to_db(self):
+        db.session.add(self)
+        db.session.commit()
 
     def get_text_prophecy(self) -> str:
         """Return prophecy text.
@@ -42,11 +45,15 @@ class Prophecy(db.Model):
         """
         return self.prophecy_text
 
-    def modify_text_prophecy(self, new_prophecy: str) -> None:
-        """Modify the text of the prophecy.
+    def modify_text_prophecy(self, prophet_id: int, new_prophecy: str) -> None:
+        """Create a new prophecy or modify the text of the prophecy.
 
-        :param new_prophecy: The text of the new prophecy."""
+        :param new_prophecy: The text of the new prophecy.
+        :param prophet_id: The ID of the prophet this prophecy belongs to.
+        """
+        self.prophet_id = prophet_id
         self.prophecy_text = new_prophecy
+        self.save_to_db()
 
     def get_photo_location(self) -> str:
         """Return photo location on disk.
